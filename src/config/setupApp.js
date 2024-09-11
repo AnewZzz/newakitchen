@@ -32,6 +32,13 @@ const setup = {
       is_system: true,
     });
     console.log(' Cook Role Added');
+
+    await Role.create({
+      name: USER_ROLES.COUNTER,
+      permissions: [...Object.values(PERMISSIONS.COUNTER)],
+      is_system: true,
+    });
+    console.log(' Counter Role Added');
   },
 };
 

@@ -6,7 +6,7 @@ const routes = {
   create: {
     path: '',
     method: 'POST',
-    permissions: [PERMISSIONS.ADMIN.WRITE],
+    permissions: [PERMISSIONS.ADMIN.WRITE, PERMISSIONS.COUNTER.WRITE],
   },
   delete: {
     path: '/delete/{id}',
@@ -16,12 +16,12 @@ const routes = {
   update: {
     path: '/update/{id}',
     method: 'PATCH',
-    permissions: [PERMISSIONS.ADMIN.WRITE],
+    permissions: [PERMISSIONS.ADMIN.WRITE, PERMISSIONS.COUNTER.WRITE],
   },
   getById: {
     path: '/{id}',
     method: 'GET',
-    permissions: [PERMISSIONS.ADMIN.WRITE],
+    permissions: [PERMISSIONS.ADMIN.WRITE, PERMISSIONS.COUNTER.WRITE],
   },
   list: {
     path: '',
