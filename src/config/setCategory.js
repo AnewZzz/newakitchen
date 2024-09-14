@@ -11,7 +11,7 @@ const setup = {
     console.log('categories collection dropped');
 
     await Promise.all(
-      Object.values(FOOD_CATEGORIES).map(async cat => {
+      Object.values(FOOD_CATEGORIES).forEach(async cat => {
         const payload = {
           name: cat,
         };

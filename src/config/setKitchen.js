@@ -20,7 +20,7 @@ const setup = {
       },
     ];
 
-    await Promise.all(kitchens.map(item => Kitchen.create(item)));
+    await Promise.all(kitchens.forEach(item => Kitchen.create(item)));
 
     console.log('Kitchens added');
   },
