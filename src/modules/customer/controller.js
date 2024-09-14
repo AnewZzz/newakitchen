@@ -1,28 +1,82 @@
+const mongoose = require('mongoose');
 const model = require('./model');
 const { DataUtils } = require('../../utils/data');
+const { controller: ImageController } = require('../image/controller');
+const { ObjectId } = mongoose.Types;
+
 
 const controller = {
   async create(req) {
-    return model.create(req.payload);
+    try {
+      const { payload } = req;
+      const customer = await model.create(payload);
+      return customer;
+    } catch (err) {
+      throw new Error(err);
+    }
+
   },
+
   async delete(req) {
     const { id } = req.params;
+    const prevDoc = await model.findById(id);
+
+    if (prevDoc?.photo) {
+      await ImageController.removeImage(prevDoc.photo);
+    }
     return model.findOneAndDelete({ _id: id });
   },
 
   async update(req) {
     const { params, payload } = req;
+    const prevDoc = await model.findById(params.id);
+
+    if (payload?.photo && prevDoc?.photo) {
+      await ImageController.removeImage(prevDoc.photo);
+    }
     return model.findByIdAndUpdate(params.id, payload, { new: 1 });
   },
+
   async getById(req) {
     const { id } = req.params;
-    return model.findOne({ _id: id });
+    const query = [
+      {
+        $match: {
+          _id: ObjectId(id),
+        },
+      },
+      {
+        $lookup: {
+          from: 'image',
+          localField: 'photo',
+          foreignField: '_id',
+          as: 'photo',
+        },
+      },
+      {
+        $unwind: {
+          path: '$photo',
+          preserveNullAndEmptyArrays: true,
+        },
+      },
+      {
+        $addFields: {
+          photo: '$photo.name',
+        },
+      },
+    ];
+    const doc = await model.aggregate(query);
+    return doc?.[0];
   },
+
   async list(filter, { start, limit }) {
     const query = [
       {
         $addFields: {
           normalizedName: { $toLower: '$name' },
+        },
+        $addFields: {
+          photo: '$photo.name',
         },
       },
     ];
@@ -64,7 +118,7 @@ const controller = {
     return DataUtils.paging({
       start,
       limit,
-      sort: { normalizedName: 1 },
+      sort: { normalizedName: 1, pinned: true },
       model,
       query,
     });

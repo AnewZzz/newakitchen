@@ -1,5 +1,7 @@
 const mongoose = require('mongoose');
 const commonSchema = require('../../helpers/schema');
+const { ObjectId } = mongoose.Schema;
+
 
 const schema = {
   name: { type: String, require: true },
@@ -12,6 +14,9 @@ const schema = {
     default: null,
     required: false,
   },
+  photo: { type: ObjectId, ref: 'Image'},
+  color: {type: String},
+  pinned: {type: Boolean, default: false},
   isArchived: { type: Boolean, default: false },
   ...commonSchema,
 };
