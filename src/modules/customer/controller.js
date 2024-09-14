@@ -118,7 +118,7 @@ const controller = {
     return DataUtils.paging({
       start,
       limit,
-      sort: { normalizedName: 1 },
+      sort: { pinned: -1, normalizedName: 1 },
       model,
       query,
     });
@@ -127,7 +127,7 @@ const controller = {
     const query = [
       {
         $addFields: {
-          normalizedName: { $toLower: '$name' },
+          normalizedName: { pinned: -1, $toLower: '$name' },
         },
       },
     ];
