@@ -26,7 +26,7 @@ const routes = {
   list: {
     path: '',
     method: 'GET',
-    permissions: [PERMISSIONS.ADMIN.WRITE],
+    // permissions: [PERMISSIONS.ADMIN.WRITE],
   },
   getAll: {
     path: '/listAll',

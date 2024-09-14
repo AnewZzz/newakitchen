@@ -57,9 +57,6 @@ const routes = {
   resetPassword: {
     path: '/resetPassword',
     method: 'PATCH',
-    permissions: [
-      PERMISSIONS.ADMIN.WRITE,
-    ]
   }
 };
 
