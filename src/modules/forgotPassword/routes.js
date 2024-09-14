@@ -3,7 +3,7 @@ import validators from './validator';
 
 const routes = {
   add: {
-    path: '',
+    path: '/add/{email}',
     method: 'GET',
   },
   matchPin: {
