@@ -10,6 +10,7 @@ const routes = {
       PERMISSIONS.ADMIN.WRITE,
       PERMISSIONS.RECPTIONIST.WRITE,
       PERMISSIONS.COOK.WRITE,
+      PERMISSIONS.COUNTER.WRITE,
     ],
   },
   delete: {
@@ -29,6 +30,7 @@ const routes = {
       PERMISSIONS.ADMIN.WRITE,
       PERMISSIONS.RECPTIONIST.WRITE,
       PERMISSIONS.COOK.WRITE,
+      PERMISSIONS.COUNTER.WRITE,
     ],
   },
   list: {
@@ -38,12 +40,13 @@ const routes = {
       PERMISSIONS.ADMIN.WRITE,
       PERMISSIONS.RECPTIONIST.WRITE,
       PERMISSIONS.COOK.WRITE,
+      PERMISSIONS.COUNTER.WRITE,
     ],
   },
   lastOrderNumber: {
     path: '/last-order-number',
     method: 'GET',
-    permissions: [PERMISSIONS.ADMIN.READ, PERMISSIONS.RECPTIONIST.READ],
+    permissions: [PERMISSIONS.ADMIN.READ, PERMISSIONS.RECPTIONIST.READ,PERMISSIONS.COUNTER.READ],
   },
   listAll: {
     path: '/listAll',
