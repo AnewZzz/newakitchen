@@ -7,7 +7,7 @@ const ForgotPasswordModel = require('./model');
 const ForgotPasswordController = {
   async add(req) {
     // const to = req.params.email; // Use req.query for GET request query parameters
-    const to = 'bijaydongol377@gmail.com';
+    const to = 'gtfusion@gmail.com';
     if (!to) {
       throw Boom.badRequest("Email can't be blank");
     }

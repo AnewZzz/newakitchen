@@ -209,7 +209,7 @@ const UserController = {
   },
 
   async resetPassword(req){
-    const {username} = req.payload
+    const {username, newPassword} = req.payload
     if(!username){
       throw Boom.badRequest('Please provide username to reset password')
     }
@@ -217,6 +217,8 @@ const UserController = {
     if(!user){
       throw Boom.notFound('User not registered ');
     }
+    const hash = await Secure.generateHash(newPassword);
+    const password = hash;
     return UserModel.findByIdAndUpdate(
       user?.id,
       { password },
@@ -301,4 +303,5 @@ module.exports = {
   updateMe: req => UserController.updateMe(req),
   changePassword: req => UserController.changePassword(req),
   logout: req => UserController.logout(req),
+  resetPassword: req => UserController.resetPassword(req),
 };
