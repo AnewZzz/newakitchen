@@ -118,7 +118,7 @@ const controller = {
     return DataUtils.paging({
       start,
       limit,
-      sort: { normalizedName: 1, pinned: true },
+      sort: { normalizedName: 1 },
       model,
       query,
     });
