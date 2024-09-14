@@ -11,7 +11,7 @@ const routes = {
   delete: {
     path: '/delete/{id}',
     method: 'DELETE',
-    permissions: [PERMISSIONS.ADMIN.WRITE, PERMISSIONS.COUNTER.WRITE],
+    permissions: [PERMISSIONS.ADMIN.WRITE],
   },
   update: {
     path: '/update/{id}',
