@@ -170,9 +170,9 @@ const UserController = {
   },
   async login(req) {
     const { username, password, deviceToken } = req.payload;
-    if (!deviceToken) {
-      throw Boom.badRequest('Device Token not provided.');
-    }
+    // if (!deviceToken) {
+    //   throw Boom.badRequest('Device Token not provided.');
+    // }
     const userPresent = await UserController.checkUserPresent({ username });
     const currUser = await UserModel.findOne({ username });
     if (!userPresent) {
@@ -185,11 +185,11 @@ const UserController = {
       );
     }
 
-    if (userPresent?.deviceToken && userPresent?.deviceToken !== deviceToken) {
-      throw Boom.forbidden(
-        'User is still logged in on another mobile. Please logout from that device to login from another device.'
-      );
-    }
+    // if (userPresent?.deviceToken && userPresent?.deviceToken !== deviceToken) {
+    //   throw Boom.forbidden(
+    //     'User is still logged in on another mobile. Please logout from that device to login from another device.'
+    //   );
+    // }
 
     const passwordMatched = await Secure.compare(
       password,
