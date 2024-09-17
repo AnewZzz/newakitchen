@@ -54,10 +54,6 @@ const routes = {
       PERMISSIONS.RECPTIONIST.WRITE,
     ],
   },
-  resetPassword: {
-    path: '/resetPassword',
-    method: 'PATCH',
-  }
 };
 
 const UserRoutes = {

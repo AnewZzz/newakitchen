@@ -6,9 +6,9 @@ const routes = {
     path: '/add/{email}',
     method: 'GET',
   },
-  matchPin: {
-    path: '/matchPin',
-    method: 'POST',
+  resetPassword: {
+    path: '/resetPassword',
+    method: 'PATCH',
   },
 };
 

@@ -1,9 +1,16 @@
 const mongoose = require('mongoose');
 
 const commonSchema = require('../../helpers/schema');
+const { ObjectId } = mongoose.Schema;
+
 
 const schema = {
   pin: { type: String, required: true },
+  user: {
+    type: ObjectId,
+    ref: 'User',
+    required: true,
+  },
   ...commonSchema,
 };
 

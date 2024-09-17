@@ -6,7 +6,6 @@ const UserModel = require('./model');
 const { DataUtils } = require('../../utils/data');
 const Auth = require('../../utils/authentication');
 const { encryptPassword } = require('../../helpers/encryptPassword');
-const { reset } = require('nodemon');
 
 const { ObjectId } = mongoose.Types;
 
@@ -208,24 +207,6 @@ const UserController = {
     return { user: userPresent, token: Auth.generateToken(tokenData) };
   },
 
-  async resetPassword(req){
-    const {username, newPassword} = req.payload
-    if(!username){
-      throw Boom.badRequest('Please provide username to reset password')
-    }
-    user = UserModel.findOne({username})
-    if(!user){
-      throw Boom.notFound('User not registered ');
-    }
-    const hash = await Secure.generateHash(newPassword);
-    const password = hash;
-    return UserModel.findByIdAndUpdate(
-      user?.id,
-      { password },
-      { new: 1 }
-    );
-  },
-
   async changePassword(req) {
     const { currentUser, payload } = req;
     const { previousPassword, newPassword} = payload;
@@ -303,5 +284,4 @@ module.exports = {
   updateMe: req => UserController.updateMe(req),
   changePassword: req => UserController.changePassword(req),
   logout: req => UserController.logout(req),
-  resetPassword: req => UserController.resetPassword(req),
 };
