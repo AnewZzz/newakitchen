@@ -168,7 +168,7 @@ const UserController = {
     });
   },
   async login(req) {
-    const { username, password, deviceToken } = req.payload;
+    const { username, password } = req.payload;
     // if (!deviceToken) {
     //   throw Boom.badRequest('Device Token not provided.');
     // }
@@ -200,8 +200,8 @@ const UserController = {
       id: userPresent._id,
       role: userPresent.role,
     };
-    currUser.deviceToken = deviceToken;
-    await currUser.save();
+    // currUser.deviceToken = deviceToken;
+    // await currUser.save();
 
     delete userPresent.password;
     return { user: userPresent, token: Auth.generateToken(tokenData) };
@@ -252,7 +252,7 @@ const UserController = {
       }
 
       // Clear the device token
-      currUser.deviceToken = null;
+      // currUser.deviceToken = null;
 
       // Save the updated user document
       await currUser.save();

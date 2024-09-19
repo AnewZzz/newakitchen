@@ -9,7 +9,7 @@ module.exports = {
       contact: Joi.string().required(),
       password: Joi.string().optional(),
       user_password: Joi.string().optional(),
-      deviceToken: Joi.string().optional().allow(null, ''),
+      // deviceToken: Joi.string().optional().allow(null, ''),
       role: Joi.string().optional(),
       designated_kitchen: Joi.string().optional(),
     }),
@@ -44,7 +44,7 @@ module.exports = {
     payload: Joi.object({
       username: Joi.string().required(),
       password: Joi.string().required(),
-      deviceToken: Joi.string().required(),
+      // deviceToken: Joi.string().required(),
     }),
   },
   logout: {

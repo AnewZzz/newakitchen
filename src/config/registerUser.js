@@ -17,7 +17,7 @@ const setup = {
       role: USER_ROLES.ADMIN,
       password: '1234567890',
       user_password: encryptPassword('1234567890'),
-      deviceToken: '',
+      // deviceToken: '',
     };
     await User.add({
       payload,

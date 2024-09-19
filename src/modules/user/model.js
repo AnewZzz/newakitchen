@@ -38,10 +38,10 @@ const schema = {
     type: String,
     required: true,
   },
-  deviceToken: {
-    type: String,
-    default: null,
-  },
+  // deviceToken: {
+  //   type: String,
+  //   default: null,
+  // },
   designated_kitchen: {
     type: ObjectId,
     ref: 'Kitchen',
