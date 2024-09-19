@@ -15,6 +15,7 @@ const ForgotPasswordController = {
   
     // Fetch the user from the database based on the email
     const user = await mongoose.connection.collection('users').findOne({ email: to });
+    
     console.log(user)
     // Check if user exists and if the user is an admin
     if (!user) {
@@ -88,10 +89,10 @@ const ForgotPasswordController = {
         throw Boom.notFound('User not registered ');
       }
       const hash = await Secure.generateHash(newPassword);
-      const password = hash;
-      user.password = password
-      user.user_password = encryptPassword(password)
-      user.save
+      await mongoose.connection.collection('users').findOneAndUpdate(
+        { _id: currPin.user._id },
+        { $set: { password: hash, user_password: encryptPassword(newPassword) } }
+      );
       return {data: "Password reset successfull."}
     } catch (error) {
       // Handle any other errors
