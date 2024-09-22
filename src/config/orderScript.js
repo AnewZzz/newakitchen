@@ -24,7 +24,7 @@ const setup = {
             isPackaged: false,
           },
         ],
-        isPrinted: true,
+        isPrinted: false,
       },
       {
         recipient: "recipient2",
@@ -36,10 +36,10 @@ const setup = {
             food: 'Veg Momo',
             quantity: 3,
             flavor: ['--oil', '++spicy'],
-            isPackaged: true,
+            isPackaged: false,
           },
         ],
-        isPrinted: true,
+        isPrinted: false,
       },
       {
         recipient: 'recipient_3',
@@ -54,7 +54,7 @@ const setup = {
             isPackaged: false,
           },
         ],
-        isPrinted: true,
+        isPrinted: false,
       },
     ];
     console.log({ orders });
