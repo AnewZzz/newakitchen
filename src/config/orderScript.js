@@ -8,10 +8,13 @@ const setup = {
     await mongoose.connect(config.db);
     console.log('db-connected');
     await mongoose.connection.collection('orders').drop();
+    const user = await mongoose.connection.collection('users').findOne({}, { _id: 1 });
 
     const orders = [
       {
+        recipient: "recipient_1",
         recipientType: ENUMS.recepient_type[0],
+        initiator: user._id,
         orderNumber: 1,
         items: [
           {
@@ -24,8 +27,10 @@ const setup = {
         isPrinted: true,
       },
       {
+        recipient: "recipient2",
         recipientType: ENUMS.recepient_type[1],
         orderNumber: 2,
+        initiator: user._id,
         items: [
           {
             food: 'Veg Momo',
@@ -37,8 +42,10 @@ const setup = {
         isPrinted: true,
       },
       {
+        recipient: 'recipient_3',
         recipientType: ENUMS.recepient_type[1],
         orderNumber: 3,
+        initiator: user._id,
         items: [
           {
             food: 'Chickhen Momo',
@@ -52,8 +59,7 @@ const setup = {
     ];
     console.log({ orders });
 
-    await Promise.all(orders.forEach(item => Order.create(item)));
-
+    await Promise.all(orders.map(item => Order.create(item)));
     console.log('orders added');
   },
 };
