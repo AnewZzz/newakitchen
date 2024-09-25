@@ -7,6 +7,7 @@ import ACL_PLUGIN from './plugins/ACL';
 import RoutePlugin from './plugins/Route';
 import cronjob from './config/cron';
 import ConnectDb from './config/connectDb';
+import { initWebSocketServer } from './config/websocket';
 
 const Good = require('@hapi/good');
 
@@ -18,7 +19,7 @@ const rootPath = Path.resolve('./');
 
 const init = async () => {
   const server = Hapi.server({
-    port: process.env.PORT || 3000,
+    port: process.env.PORT || 3001,
     routes: {
       files: {
         relativeTo: Path.join(rootPath, 'public'),
@@ -44,7 +45,7 @@ const init = async () => {
     ACL_PLUGIN,
     RoutePlugin,
   ]);
-
+  initWebSocketServer();
   await server.start();
   console.log('Server running on %s', server.info.uri);
 };

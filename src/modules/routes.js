@@ -7,6 +7,7 @@ import UserRoutes from './user/routes';
 import CategoryRoutes from './category/routes';
 import ImageRoutes from './image/routes';
 import ForgotPasswordRoutes from './forgotPassword/routes';
+import NotificationsRoutes from './notification/routes'
 
 export default [
   UserRoutes,
@@ -18,4 +19,5 @@ export default [
   CategoryRoutes,
   ImageRoutes,
   ForgotPasswordRoutes,
+  NotificationsRoutes,
 ];
