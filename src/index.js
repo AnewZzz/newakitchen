@@ -7,7 +7,7 @@ import ACL_PLUGIN from './plugins/ACL';
 import RoutePlugin from './plugins/Route';
 import cronjob from './config/cron';
 import ConnectDb from './config/connectDb';
-import { initWebSocketServer } from './config/websocket';
+import { initWebSocketServer } from './config/websocket'; // Ensure this path is correct
 
 const Good = require('@hapi/good');
 
@@ -45,7 +45,10 @@ const init = async () => {
     ACL_PLUGIN,
     RoutePlugin,
   ]);
-  initWebSocketServer();
+
+  // Pass the Hapi server to the WebSocket server initialization
+  initWebSocketServer(server.listener); // Use server.listener to get the underlying HTTP server
+
   await server.start();
   console.log('Server running on %s', server.info.uri);
 };

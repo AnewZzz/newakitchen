@@ -2,10 +2,11 @@ const WebSocket = require('ws');
 
 let sockets = [];
 
-function initWebSocketServer() {
-  const server = new WebSocket.Server({ port: 5001 });
+// Accept the HTTP server as a parameter
+function initWebSocketServer(httpServer) {
+  const wss = new WebSocket.Server({ server: httpServer });
 
-  server.on('connection', function (socket) {
+  wss.on('connection', function (socket) {
     sockets.push(socket);
 
     socket.on('message', function (msg) {
@@ -17,7 +18,7 @@ function initWebSocketServer() {
     });
   });
 
-  console.log('WebSocket server running on ws://localhost:5001');
+  console.log('WebSocket server running on ws://localhost:3001');
 }
 
 function broadcastNotification(notificationData) {
